@@ -5,11 +5,14 @@ import MicIcon from '../icons/MicIcon';
 import MicMuteIcon from '../icons/MicMuteIcon';
 import SearchIcon from '../icons/SearchIcon';
 import KeyboardIcon from '../icons/KeyboardIcon';
+import Keyboard from 'react-simple-keyboard';
+import 'react-simple-keyboard/build/css/index.css';
 import './Search.css';
 
 const SearchPage: React.FC = () => {
     const [query, setQuery] = useState<string>('');
     const [isListening, setIsListening] = useState<boolean>(false);
+    const [showKeyboard, setShowKeyboard] = useState<boolean>(false);
     const [recognition, setRecognition] = useState<SpeechRecognition | null>(null);
 
     const handleClearInput = () => {
@@ -58,6 +61,10 @@ const SearchPage: React.FC = () => {
         setIsListening(false);
     };
 
+    const handleKeyboardInput = (input: string) => {
+        setQuery(prev => prev + input);
+    };
+
     return (
         <motion.div
             className="search-container"
@@ -94,11 +101,11 @@ const SearchPage: React.FC = () => {
                 </div>
                 <div className="icons-container">
                     {query && <ClearIcon onClick={handleClearInput} />}
-                    <KeyboardIcon />
+                    <KeyboardIcon onClick={() => setShowKeyboard(!showKeyboard)} />
                     {isListening ? (
-                        <MicMuteIcon onClick={stopListening} /> // Mute icon when listening
+                        <MicMuteIcon onClick={stopListening} />
                     ) : (
-                        <MicIcon onClick={startListening} /> // Regular icon when not listening
+                        <MicIcon onClick={startListening} />
                     )}
                 </div>
             </motion.div>
@@ -106,6 +113,11 @@ const SearchPage: React.FC = () => {
                 <div style={{ marginTop: '10px', fontSize: '14px', color: '#666' }}>
                     Listening<span className="listening-dots"></span>
                 </div>
+            )}
+            {showKeyboard && (
+                <Keyboard
+                    onKeyPress={(button: string) => handleKeyboardInput(button)}
+                />
             )}
         </motion.div>
     );
