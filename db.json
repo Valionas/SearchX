@@ -1,0 +1,784 @@
+{
+    "items": [
+        {
+            "id": 1,
+            "title": "React",
+            "url": "https://reactjs.org",
+            "description": "A JavaScript library for building user interfaces"
+        },
+        {
+            "id": 2,
+            "title": "TypeScript",
+            "url": "https://www.typescriptlang.org",
+            "description": "A strongly typed programming language that builds on JavaScript"
+        },
+        {
+            "id": 3,
+            "title": "Node.js",
+            "url": "https://nodejs.org",
+            "description": "A JavaScript runtime built on Chrome's V8 JavaScript engine"
+        },
+        {
+            "id": 4,
+            "title": "Express.js",
+            "url": "https://expressjs.com",
+            "description": "Fast, unopinionated, minimalist web framework for Node.js"
+        },
+        {
+            "id": 5,
+            "title": "Vue.js",
+            "url": "https://vuejs.org",
+            "description": "The Progressive JavaScript Framework"
+        },
+        {
+            "id": 6,
+            "title": "Angular",
+            "url": "https://angular.io",
+            "description": "One framework. Mobile & desktop."
+        },
+        {
+            "id": 7,
+            "title": "Django",
+            "url": "https://www.djangoproject.com",
+            "description": "A high-level Python web framework that encourages rapid development"
+        },
+        {
+            "id": 8,
+            "title": "Flask",
+            "url": "https://flask.palletsprojects.com",
+            "description": "A lightweight WSGI web application framework in Python"
+        },
+        {
+            "id": 9,
+            "title": "Kubernetes",
+            "url": "https://kubernetes.io",
+            "description": "An open-source system for automating deployment, scaling, and management of containerized applications"
+        },
+        {
+            "id": 10,
+            "title": "Docker",
+            "url": "https://www.docker.com",
+            "description": "An open platform for developing, shipping, and running applications"
+        },
+        {
+            "id": 11,
+            "title": "Python",
+            "url": "https://www.python.org",
+            "description": "A high-level, interpreted programming language with dynamic semantics"
+        },
+        {
+            "id": 12,
+            "title": "Ruby on Rails",
+            "url": "https://rubyonrails.org",
+            "description": "A web-application framework that includes everything needed to create database-backed web applications"
+        },
+        {
+            "id": 13,
+            "title": "Laravel",
+            "url": "https://laravel.com",
+            "description": "A PHP framework for web artisans"
+        },
+        {
+            "id": 14,
+            "title": "Spring Boot",
+            "url": "https://spring.io/projects/spring-boot",
+            "description": "A project that makes it easy to create stand-alone, production-grade Spring-based applications"
+        },
+        {
+            "id": 15,
+            "title": "Java",
+            "url": "https://www.java.com",
+            "description": "A high-level, class-based, object-oriented programming language that is designed to have as few implementation dependencies as possible"
+        },
+        {
+            "id": 16,
+            "title": "Kotlin",
+            "url": "https://kotlinlang.org",
+            "description": "A modern programming language that makes developers happier"
+        },
+        {
+            "id": 17,
+            "title": "Go",
+            "url": "https://golang.org",
+            "description": "An open-source programming language that makes it easy to build simple, reliable, and efficient software"
+        },
+        {
+            "id": 18,
+            "title": "Rust",
+            "url": "https://www.rust-lang.org",
+            "description": "A language empowering everyone to build reliable and efficient software"
+        },
+        {
+            "id": 19,
+            "title": "Swift",
+            "url": "https://swift.org",
+            "description": "A powerful and intuitive programming language for macOS, iOS, watchOS, and tvOS"
+        },
+        {
+            "id": 20,
+            "title": "PHP",
+            "url": "https://www.php.net",
+            "description": "A popular general-purpose scripting language that is especially suited to web development"
+        },
+        {
+            "id": 21,
+            "title": "ASP.NET Core",
+            "url": "https://dotnet.microsoft.com/apps/aspnet",
+            "description": "A cross-platform, high-performance framework for building modern, cloud-based, internet-connected applications"
+        },
+        {
+            "id": 22,
+            "title": "MongoDB",
+            "url": "https://www.mongodb.com",
+            "description": "A document database with the scalability and flexibility that you want with the querying and indexing that you need"
+        },
+        {
+            "id": 23,
+            "title": "PostgreSQL",
+            "url": "https://www.postgresql.org",
+            "description": "The world's most advanced open-source relational database"
+        },
+        {
+            "id": 24,
+            "title": "MySQL",
+            "url": "https://www.mysql.com",
+            "description": "The world's most popular open-source database"
+        },
+        {
+            "id": 25,
+            "title": "SQLite",
+            "url": "https://www.sqlite.org",
+            "description": "A C-language library that implements a small, fast, self-contained, high-reliability, full-featured, SQL database engine"
+        },
+        {
+            "id": 26,
+            "title": "Redis",
+            "url": "https://redis.io",
+            "description": "An open source, in-memory data structure store, used as a database, cache, and message broker"
+        },
+        {
+            "id": 27,
+            "title": "GraphQL",
+            "url": "https://graphql.org",
+            "description": "A query language for your API, and a server-side runtime for executing queries by using a type system you define for your data"
+        },
+        {
+            "id": 28,
+            "title": "Apollo",
+            "url": "https://www.apollographql.com",
+            "description": "A comprehensive state management library for JavaScript that enables you to manage both local and remote data with GraphQL"
+        },
+        {
+            "id": 29,
+            "title": "Jenkins",
+            "url": "https://www.jenkins.io",
+            "description": "An open source automation server which enables developers to reliably build, test, and deploy their software"
+        },
+        {
+            "id": 30,
+            "title": "CircleCI",
+            "url": "https://circleci.com",
+            "description": "A CI/CD tool that allows you to rapidly release code by automating the build, test, and deployment processes"
+        },
+        {
+            "id": 31,
+            "title": "Travis CI",
+            "url": "https://travis-ci.org",
+            "description": "A continuous integration service used to build and test software projects hosted on GitHub"
+        },
+        {
+            "id": 32,
+            "title": "Git",
+            "url": "https://git-scm.com",
+            "description": "A free and open-source distributed version control system designed to handle everything from small to very large projects with speed and efficiency"
+        },
+        {
+            "id": 33,
+            "title": "GitHub",
+            "url": "https://github.com",
+            "description": "A platform for hosting and collaborating on Git repositories"
+        },
+        {
+            "id": 34,
+            "title": "Bitbucket",
+            "url": "https://bitbucket.org",
+            "description": "A Git repository management solution designed for professional teams"
+        },
+        {
+            "id": 35,
+            "title": "GitLab",
+            "url": "https://about.gitlab.com",
+            "description": "A web-based DevOps lifecycle tool that provides a Git repository manager providing wiki, issue-tracking, and CI/CD pipeline features"
+        },
+        {
+            "id": 36,
+            "title": "AWS",
+            "url": "https://aws.amazon.com",
+            "description": "Amazon Web Services offers reliable, scalable, and inexpensive cloud computing services"
+        },
+        {
+            "id": 37,
+            "title": "Azure",
+            "url": "https://azure.microsoft.com",
+            "description": "Microsoft Azure is a cloud computing service for building, testing, deploying, and managing applications and services through Microsoft-managed data centers"
+        },
+        {
+            "id": 38,
+            "title": "Google Cloud",
+            "url": "https://cloud.google.com",
+            "description": "Google Cloud provides a suite of cloud computing services that runs on the same infrastructure that Google uses internally for its end-user products"
+        },
+        {
+            "id": 39,
+            "title": "Docker Hub",
+            "url": "https://hub.docker.com",
+            "description": "The world's largest library and community for container images"
+        },
+        {
+            "id": 40,
+            "title": "Terraform",
+            "url": "https://www.terraform.io",
+            "description": "Infrastructure as code software tool that provides a consistent CLI workflow to manage hundreds of cloud services"
+        },
+        {
+            "id": 41,
+            "title": "Ansible",
+            "url": "https://www.ansible.com",
+            "description": "An open-source software provisioning, configuration management, and application-deployment tool"
+        },
+        {
+            "id": 42,
+            "title": "Puppet",
+            "url": "https://puppet.com",
+            "description": "An open-source software configuration management tool"
+        },
+        {
+            "id": 43,
+            "title": "Chef",
+            "url": "https://www.chef.io",
+            "description": "A configuration management tool for writing system configuration 'recipes' in the Ruby programming language"
+        },
+        {
+            "id": 44,
+            "title": "Linux",
+            "url": "https://www.linux.org",
+            "description": "A family of open-source Unix-like operating systems based on the Linux kernel"
+        },
+        {
+            "id": 45,
+            "title": "Nginx",
+            "url": "https://nginx.org",
+            "description": "A high-performance web server, reverse proxy, and load balancer"
+        },
+        {
+            "id": 46,
+            "title": "Elasticsearch",
+            "url": "https://www.elastic.co/elasticsearch",
+            "description": "A distributed, RESTful search and analytics engine"
+        },
+        {
+            "id": 47,
+            "title": "Kibana",
+            "url": "https://www.elastic.co/kibana",
+            "description": "A free and open user interface that lets you visualize your Elasticsearch data"
+        },
+        {
+            "id": 48,
+            "title": "Logstash",
+            "url": "https://www.elastic.co/logstash",
+            "description": "A server-side data processing pipeline that ingests data from multiple sources simultaneously, transforms it, and then sends it to a 'stash' like Elasticsearch"
+        },
+        {
+            "id": 49,
+            "title": "Prometheus",
+            "url": "https://prometheus.io",
+            "description": "An open-source systems monitoring and alerting toolkit originally built at SoundCloud"
+        },
+        {
+            "id": 50,
+            "title": "Grafana",
+            "url": "https://grafana.com",
+            "description": "The open observability platform that lets you visualize, alert on, and understand your metrics no matter where they are stored"
+        },
+        {
+            "id": 51,
+            "title": "Apache Kafka",
+            "url": "https://kafka.apache.org",
+            "description": "An open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications"
+        },
+        {
+            "id": 52,
+            "title": "RabbitMQ",
+            "url": "https://www.rabbitmq.com",
+            "description": "An open-source message-broker software that originally implemented the Advanced Message Queuing Protocol (AMQP)"
+        },
+        {
+            "id": 53,
+            "title": "Consul",
+            "url": "https://www.consul.io",
+            "description": "A service mesh solution providing a full-featured control plane with service discovery, configuration, and segmentation functionality"
+        },
+        {
+            "id": 54,
+            "title": "Vault",
+            "url": "https://www.vaultproject.io",
+            "description": "A tool for securely accessing secrets such as API keys, passwords, certificates, and more"
+        },
+        {
+            "id": 55,
+            "title": "Jira",
+            "url": "https://www.atlassian.com/software/jira",
+            "description": "A proprietary issue tracking product that allows bug tracking and agile project management"
+        },
+        {
+            "id": 56,
+            "title": "Confluence",
+            "url": "https://www.atlassian.com/software/confluence",
+            "description": "A collaboration software program developed and published by Australian software company Atlassian"
+        },
+        {
+            "id": 57,
+            "title": "Slack",
+            "url": "https://slack.com",
+            "description": "A messaging app for businesses that connects people to the information they need"
+        },
+        {
+            "id": 58,
+            "title": "Zoom",
+            "url": "https://zoom.us",
+            "description": "A leader in modern enterprise video communications, with an easy, reliable cloud platform for video and audio conferencing"
+        },
+        {
+            "id": 59,
+            "title": "Microsoft Teams",
+            "url": "https://www.microsoft.com/en-us/microsoft-teams/group-chat-software",
+            "description": "A proprietary business communication platform developed by Microsoft"
+        },
+        {
+            "id": 60,
+            "title": "Apache Spark",
+            "url": "https://spark.apache.org",
+            "description": "An open-source unified analytics engine for large-scale data processing, with built-in modules for streaming, SQL, machine learning, and graph processing"
+        },
+        {
+            "id": 61,
+            "title": "Tableau",
+            "url": "https://www.tableau.com",
+            "description": "A powerful, secure, and flexible end-to-end analytics platform"
+        },
+        {
+            "id": 62,
+            "title": "Power BI",
+            "url": "https://powerbi.microsoft.com",
+            "description": "A business analytics service by Microsoft, providing interactive visualizations and business intelligence capabilities"
+        },
+        {
+            "id": 63,
+            "title": "Snowflake",
+            "url": "https://www.snowflake.com",
+            "description": "A fully-managed data warehouse service that runs on top of the Amazon Web Services, Microsoft Azure, and Google Cloud Platform infrastructure"
+        },
+        {
+            "id": 64,
+            "title": "Redshift",
+            "url": "https://aws.amazon.com/redshift",
+            "description": "A fully-managed petabyte-scale data warehouse service in the cloud"
+        },
+        {
+            "id": 65,
+            "title": "Apache Cassandra",
+            "url": "https://cassandra.apache.org",
+            "description": "An open-source distributed NoSQL database management system designed to handle large amounts of data across many commodity servers"
+        },
+        {
+            "id": 66,
+            "title": "Hadoop",
+            "url": "https://hadoop.apache.org",
+            "description": "A framework that allows for the distributed processing of large data sets across clusters of computers using simple programming models"
+        },
+        {
+            "id": 67,
+            "title": "BigQuery",
+            "url": "https://cloud.google.com/bigquery",
+            "description": "A fully-managed, serverless data warehouse that enables scalable analysis over petabytes of data"
+        },
+        {
+            "id": 68,
+            "title": "Splunk",
+            "url": "https://www.splunk.com",
+            "description": "A software platform to search, analyze, and visualize the machine-generated big data gathered from the websites, applications, sensors, devices, etc."
+        },
+        {
+            "id": 69,
+            "title": "Elixir",
+            "url": "https://elixir-lang.org",
+            "description": "A dynamic, functional language designed for building scalable and maintainable applications"
+        },
+        {
+            "id": 70,
+            "title": "Rust",
+            "url": "https://www.rust-lang.org",
+            "description": "A language empowering everyone to build reliable and efficient software"
+        },
+        {
+            "id": 71,
+            "title": "Clojure",
+            "url": "https://clojure.org",
+            "description": "A dynamic, general-purpose programming language, combining the approachability and interactive development of a scripting language with an efficient and robust infrastructure for multithreaded programming"
+        },
+        {
+            "id": 72,
+            "title": "Scala",
+            "url": "https://www.scala-lang.org",
+            "description": "A general-purpose programming language providing support for functional programming and a strong static type system"
+        },
+        {
+            "id": 73,
+            "title": "R Programming",
+            "url": "https://www.r-project.org",
+            "description": "A programming language and free software environment for statistical computing and graphics"
+        },
+        {
+            "id": 74,
+            "title": "MATLAB",
+            "url": "https://www.mathworks.com/products/matlab.html",
+            "description": "A multi-paradigm numerical computing environment and proprietary programming language developed by MathWorks"
+        },
+        {
+            "id": 75,
+            "title": "Fortran",
+            "url": "https://fortran-lang.org",
+            "description": "A general-purpose, compiled imperative programming language that is especially suited to numeric computation and scientific computing"
+        },
+        {
+            "id": 76,
+            "title": "COBOL",
+            "url": "https://www.cobol.org",
+            "description": "A compiled English-like computer programming language designed for business use"
+        },
+        {
+            "id": 77,
+            "title": "Perl",
+            "url": "https://www.perl.org",
+            "description": "A highly capable, feature-rich programming language with over 30 years of development"
+        },
+        {
+            "id": 78,
+            "title": "Haskell",
+            "url": "https://www.haskell.org",
+            "description": "A general-purpose, statically typed, purely functional programming language with type inference and lazy evaluation"
+        },
+        {
+            "id": 79,
+            "title": "Julia",
+            "url": "https://julialang.org",
+            "description": "A high-level, high-performance dynamic programming language for technical computing"
+        },
+        {
+            "id": 80,
+            "title": "Rust",
+            "url": "https://www.rust-lang.org",
+            "description": "A language empowering everyone to build reliable and efficient software"
+        },
+        {
+            "id": 81,
+            "title": "Bootstrap",
+            "url": "https://getbootstrap.com",
+            "description": "The most popular HTML, CSS, and JS framework for developing responsive, mobile first projects on the web"
+        },
+        {
+            "id": 82,
+            "title": "Tailwind CSS",
+            "url": "https://tailwindcss.com",
+            "description": "A utility-first CSS framework packed with classes like flex, pt-4, text-center and rotate-90 that can be composed to build any design, directly in your markup"
+        },
+        {
+            "id": 83,
+            "title": "Bulma",
+            "url": "https://bulma.io",
+            "description": "A modern CSS framework based on Flexbox"
+        },
+        {
+            "id": 84,
+            "title": "Materialize",
+            "url": "https://materializecss.com",
+            "description": "A modern responsive front-end framework based on Material Design"
+        },
+        {
+            "id": 85,
+            "title": "Foundation",
+            "url": "https://get.foundation",
+            "description": "The most advanced responsive front-end framework in the world"
+        },
+        {
+            "id": 86,
+            "title": "jQuery",
+            "url": "https://jquery.com",
+            "description": "A fast, small, and feature-rich JavaScript library"
+        },
+        {
+            "id": 87,
+            "title": "Lodash",
+            "url": "https://lodash.com",
+            "description": "A modern JavaScript utility library delivering modularity, performance & extras"
+        },
+        {
+            "id": 88,
+            "title": "Moment.js",
+            "url": "https://momentjs.com",
+            "description": "A JavaScript library for parsing, validating, manipulating, and formatting dates"
+        },
+        {
+            "id": 89,
+            "title": "D3.js",
+            "url": "https://d3js.org",
+            "description": "A JavaScript library for producing dynamic, interactive data visualizations in web browsers"
+        },
+        {
+            "id": 90,
+            "title": "Three.js",
+            "url": "https://threejs.org",
+            "description": "A cross-browser JavaScript library and application programming interface used to create and display animated 3D computer graphics in a web browser using WebGL"
+        },
+        {
+            "id": 91,
+            "title": "TensorFlow",
+            "url": "https://www.tensorflow.org",
+            "description": "An end-to-end open source platform for machine learning"
+        },
+        {
+            "id": 92,
+            "title": "PyTorch",
+            "url": "https://pytorch.org",
+            "description": "An open source machine learning framework that accelerates the path from research prototyping to production deployment"
+        },
+        {
+            "id": 93,
+            "title": "Keras",
+            "url": "https://keras.io",
+            "description": "An open-source software library that provides a Python interface for artificial neural networks"
+        },
+        {
+            "id": 94,
+            "title": "Scikit-learn",
+            "url": "https://scikit-learn.org/stable/",
+            "description": "A free software machine learning library for the Python programming language"
+        },
+        {
+            "id": 95,
+            "title": "Pandas",
+            "url": "https://pandas.pydata.org",
+            "description": "An open source, BSD-licensed library providing high-performance, easy-to-use data structures and data analysis tools for the Python programming language"
+        },
+        {
+            "id": 96,
+            "title": "NumPy",
+            "url": "https://numpy.org",
+            "description": "A library for the Python programming language, adding support for large, multi-dimensional arrays and matrices, along with a large collection of high-level mathematical functions to operate on these arrays"
+        },
+        {
+            "id": 97,
+            "title": "Matplotlib",
+            "url": "https://matplotlib.org",
+            "description": "A plotting library for the Python programming language and its numerical mathematics extension NumPy"
+        },
+        {
+            "id": 98,
+            "title": "Seaborn",
+            "url": "https://seaborn.pydata.org",
+            "description": "A Python visualization library based on matplotlib that provides a high-level interface for drawing attractive and informative statistical graphics"
+        },
+        {
+            "id": 99,
+            "title": "Jupyter",
+            "url": "https://jupyter.org",
+            "description": "An open-source project that lets you create and share documents that contain live code, equations, visualizations, and narrative text"
+        },
+        {
+            "id": 100,
+            "title": "Apache Hive",
+            "url": "https://hive.apache.org",
+            "description": "A data warehouse software project built on top of Apache Hadoop for providing data query and analysis"
+        },
+        {
+            "id": 101,
+            "title": "Apache HBase",
+            "url": "https://hbase.apache.org",
+            "description": "An open-source, distributed, versioned, non-relational database modeled after Google's Bigtable"
+        },
+        {
+            "id": 102,
+            "title": "Apache Storm",
+            "url": "https://storm.apache.org",
+            "description": "A distributed real-time computation system for processing large streams of data fast"
+        },
+        {
+            "id": 103,
+            "title": "Apache Flink",
+            "url": "https://flink.apache.org",
+            "description": "An open source stream processing framework for distributed, high-performing, always-available, and accurate data streaming applications"
+        },
+        {
+            "id": 104,
+            "title": "Apache Samza",
+            "url": "https://samza.apache.org",
+            "description": "A distributed stream processing framework that uses Apache Kafka for messaging, and Apache Hadoop YARN to provide fault tolerance, processor isolation, security, and resource management"
+        },
+        {
+            "id": 105,
+            "title": "Apache Beam",
+            "url": "https://beam.apache.org",
+            "description": "An open source, unified model for defining both batch and streaming data-parallel processing pipelines"
+        },
+        {
+            "id": 106,
+            "title": "Airflow",
+            "url": "https://airflow.apache.org",
+            "description": "A platform to programmatically author, schedule, and monitor workflows"
+        },
+        {
+            "id": 107,
+            "title": "Luigi",
+            "url": "https://luigi.readthedocs.io",
+            "description": "A Python package that helps you build complex pipelines of batch jobs"
+        },
+        {
+            "id": 108,
+            "title": "Dask",
+            "url": "https://dask.org",
+            "description": "A flexible parallel computing library for analytics, enabling performance at scale for the tools you love"
+        },
+        {
+            "id": 109,
+            "title": "Celery",
+            "url": "https://docs.celeryproject.org",
+            "description": "An asynchronous task queue/job queue based on distributed message passing"
+        },
+        {
+            "id": 110,
+            "title": "Prometheus",
+            "url": "https://prometheus.io",
+            "description": "An open-source systems monitoring and alerting toolkit originally built at SoundCloud"
+        },
+        {
+            "id": 111,
+            "title": "Grafana",
+            "url": "https://grafana.com",
+            "description": "The open observability platform that lets you visualize, alert on, and understand your metrics no matter where they are stored"
+        },
+        {
+            "id": 112,
+            "title": "Thanos",
+            "url": "https://thanos.io",
+            "description": "Highly available Prometheus setup with long term storage capabilities"
+        },
+        {
+            "id": 113,
+            "title": "Apache NiFi",
+            "url": "https://nifi.apache.org",
+            "description": "A data logistics platform that automates the movement of data between disparate data sources and systems"
+        },
+        {
+            "id": 114,
+            "title": "Kibana",
+            "url": "https://www.elastic.co/kibana",
+            "description": "A free and open user interface that lets you visualize your Elasticsearch data and navigate the Elastic Stack"
+        },
+        {
+            "id": 115,
+            "title": "Logstash",
+            "url": "https://www.elastic.co/logstash",
+            "description": "A server-side data processing pipeline that ingests data from multiple sources simultaneously, transforms it, and then sends it to a stash like Elasticsearch"
+        },
+        {
+            "id": 116,
+            "title": "Elasticsearch",
+            "url": "https://www.elastic.co/elasticsearch",
+            "description": "A distributed, RESTful search and analytics engine capable of addressing a growing number of use cases"
+        },
+        {
+            "id": 117,
+            "title": "Amazon Athena",
+            "url": "https://aws.amazon.com/athena",
+            "description": "An interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL"
+        },
+        {
+            "id": 118,
+            "title": "Amazon Redshift",
+            "url": "https://aws.amazon.com/redshift",
+            "description": "A fully-managed data warehouse that makes it simple and cost-effective to analyze all your data using standard SQL and your existing Business Intelligence (BI) tools"
+        },
+        {
+            "id": 119,
+            "title": "Google BigQuery",
+            "url": "https://cloud.google.com/bigquery",
+            "description": "A serverless, highly scalable, and cost-effective multi-cloud data warehouse designed for business agility"
+        },
+        {
+            "id": 120,
+            "title": "Azure Synapse Analytics",
+            "url": "https://azure.microsoft.com/en-us/services/synapse-analytics",
+            "description": "A limitless analytics service that brings together enterprise data warehousing and Big Data analytics"
+        },
+        {
+            "id": 121,
+            "title": "Google Dataflow",
+            "url": "https://cloud.google.com/dataflow",
+            "description": "A fully-managed service for stream and batch processing"
+        },
+        {
+            "id": 122,
+            "title": "Azure Data Factory",
+            "url": "https://azure.microsoft.com/en-us/services/data-factory",
+            "description": "A cloud-based data integration service that allows you to create data-driven workflows for orchestrating and automating data movement and data transformation"
+        },
+        {
+            "id": 123,
+            "title": "Apache Kafka",
+            "url": "https://kafka.apache.org",
+            "description": "An open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications"
+        },
+        {
+            "id": 124,
+            "title": "RabbitMQ",
+            "url": "https://www.rabbitmq.com",
+            "description": "An open-source message-broker software that originally implemented the Advanced Message Queuing Protocol (AMQP)"
+        },
+        {
+            "id": 125,
+            "title": "Redis",
+            "url": "https://redis.io",
+            "description": "An open-source, in-memory data structure store, used as a database, cache, and message broker"
+        },
+        {
+            "id": 126,
+            "title": "Apache Pulsar",
+            "url": "https://pulsar.apache.org",
+            "description": "An open-source distributed pub-sub messaging system originally created at Yahoo and now a top-level Apache Software Foundation project"
+        },
+        {
+            "id": 127,
+            "title": "ZeroMQ",
+            "url": "https://zeromq.org",
+            "description": "An open-source, high-performance messaging library, aimed at use in distributed or concurrent applications"
+        },
+        {
+            "id": 128,
+            "title": "NATS",
+            "url": "https://nats.io",
+            "description": "A simple, secure and high performance open source messaging system for cloud native applications, IoT messaging, and microservices architectures"
+        },
+        {
+            "id": 129,
+            "title": "ActiveMQ",
+            "url": "https://activemq.apache.org",
+            "description": "An open-source message broker written in Java together with a full Java Message Service (JMS) client"
+        },
+        {
+            "id": 130,
+            "title": "Eclipse Mosquitto",
+            "url": "https://mosquitto.org",
+            "description": "An open-source message broker that implements the MQTT protocol, designed for lightweight messaging between devices"
+        }
+    ]
+}
