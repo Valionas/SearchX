@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ClearIcon from '../icons/ClearIcon';
 import MicIcon from '../icons/MicIcon';
@@ -8,15 +8,29 @@ import KeyboardIcon from '../icons/KeyboardIcon';
 import Keyboard from 'react-simple-keyboard';
 import 'react-simple-keyboard/build/css/index.css';
 import './Search.css';
+import Autocomplete from '../../components/autocomplete/Autocomplete';
 
 const SearchPage: React.FC = () => {
     const [query, setQuery] = useState<string>('');
     const [isListening, setIsListening] = useState<boolean>(false);
     const [showKeyboard, setShowKeyboard] = useState<boolean>(false);
     const [recognition, setRecognition] = useState<SpeechRecognition | null>(null);
+    const [results, setResults] = useState<SearchResult[]>([]);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/items')
+            .then((response) => response.json())
+            .then((data) => setResults(data))
+            .catch((error) => console.error('Error fetching data:', error));
+    }, []);
 
     const handleClearInput = () => {
         setQuery('');
+    };
+
+    const handleSelectResult = (selectedResult: SearchResult) => {
+        setQuery(selectedResult.title);
+        window.open(selectedResult.url, '_blank');
     };
 
     const startListening = () => {
@@ -33,7 +47,8 @@ const SearchPage: React.FC = () => {
             };
 
             newRecognition.onresult = (event: SpeechRecognitionEvent) => {
-                const speechResult = event.results[0][0].transcript;
+                let speechResult = event.results[0][0].transcript;
+                speechResult = speechResult.replace(/[.,!?;:]$/, '');
                 setQuery(speechResult);
             };
 
@@ -62,7 +77,7 @@ const SearchPage: React.FC = () => {
     };
 
     const handleKeyboardInput = (input: string) => {
-        setQuery(prev => prev + input);
+        setQuery((prev) => prev + input);
     };
 
     return (
@@ -80,8 +95,16 @@ const SearchPage: React.FC = () => {
             >
                 SearchX
             </motion.h1>
+            {showKeyboard && (
+                <Keyboard onKeyPress={(button: string) => handleKeyboardInput(button)} />
+            )}
+            {isListening && (
+                <div style={{ marginTop: '10px', fontSize: '14px', color: '#666' }}>
+                    Listening<span className="listening-dots"></span>
+                </div>
+            )}
             <motion.div
-                className="search-box"
+                className='search-box'
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 2, delay: 0.4 }}
@@ -92,11 +115,17 @@ const SearchPage: React.FC = () => {
                         type="text"
                         value={query}
                         onChange={(e) => setQuery(e.target.value)}
-                        className="search-input"
+                        className={`search-input ${query ? 'search-input-active' : ''}`}
                         placeholder="Search..."
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 2, delay: 0.6 }}
+                    />
+                    <Autocomplete
+                        query={query}
+                        results={results}
+                        onSelect={handleSelectResult}
+                        onClear={handleClearInput}
                     />
                 </div>
                 <div className="icons-container">
@@ -109,18 +138,15 @@ const SearchPage: React.FC = () => {
                     )}
                 </div>
             </motion.div>
-            {isListening && (
-                <div style={{ marginTop: '10px', fontSize: '14px', color: '#666' }}>
-                    Listening<span className="listening-dots"></span>
-                </div>
-            )}
-            {showKeyboard && (
-                <Keyboard
-                    onKeyPress={(button: string) => handleKeyboardInput(button)}
-                />
-            )}
         </motion.div>
     );
 };
+
+interface SearchResult {
+    id: number;
+    title: string;
+    url: string;
+    description: string;
+}
 
 export default SearchPage;

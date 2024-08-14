@@ -1,0 +1,28 @@
+.icons-container {
+    position: absolute;
+    right: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    fill: #666;
+}
+
+.icon:hover {
+    fill: #333;
+}
+
+.clear-icon {
+    fill: #f44336;
+}
+
+.keyboard-icon,
+.mic-icon,
+.search-icon {
+    fill: #666;
+}

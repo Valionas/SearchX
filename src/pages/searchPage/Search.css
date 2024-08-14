@@ -16,6 +16,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
+
 }
 
 .input-container {
@@ -36,7 +37,11 @@
     padding-right:14%;
 }
 
-.input-container .icon.search-icon {
+.search-input-active {
+   border-radius: 24px 24px 0px 0px;
+}
+
+.input-container > .icon.search-icon {
     position: absolute;
     left: 15px;
     top: 50%;
