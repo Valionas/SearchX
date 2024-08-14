@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './Autocomplete.css';
 import SearchIcon from '../../pages/icons/SearchIcon';
+import { SearchResult } from '../../models/SearchResult';
 
-const Autocomplete: React.FC<AutocompleteProps> = ({ query, results, onSelect, onClear }) => {
+const Autocomplete: React.FC<AutocompleteProps> = ({ query, results, onSelect, onClose }) => {
     const [filteredResults, setFilteredResults] = useState<SearchResult[]>([]);
 
     useEffect(() => {
@@ -18,15 +19,30 @@ const Autocomplete: React.FC<AutocompleteProps> = ({ query, results, onSelect, o
         }
     }, [query, results]);
 
+    const handleSelect = (result: SearchResult) => {
+        onSelect(result);
+        onClose(); 
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter') {
+            if (filteredResults.length > 0) {
+                handleSelect(filteredResults[0]); // Select the first item on Enter key press
+            } else {
+                handleSelect({ id: 0, title: query, url: '', description: '' }); // Handle the "Search for" scenario
+            }
+        }
+    };
+
     return (
-        <div className="autocomplete-container">
+        <div className="autocomplete-container" onKeyDown={handleKeyDown}>
             {filteredResults.length > 0 ? (
                 <div className="autocomplete-dropdown">
                     {filteredResults.map((result) => (
                         <div
                             key={result.id}
                             className="autocomplete-item"
-                            onClick={() => onSelect(result)}
+                            onClick={() => handleSelect(result)}
                         >
                             <SearchIcon />
                             {result.title}
@@ -37,8 +53,8 @@ const Autocomplete: React.FC<AutocompleteProps> = ({ query, results, onSelect, o
                 <div className="autocomplete-dropdown">
                     <div
                         className="autocomplete-item search-for-item"
-                        onClick={() => onSelect({ id: 0, title: query, url: '', description: '' })}
-                    >
+                        onClick={() => handleSelect({ id: 0, title: query, url: '', description: '' })}
+                    >                  
                         Search for "{query}"
                     </div>
                 </div>
@@ -47,18 +63,11 @@ const Autocomplete: React.FC<AutocompleteProps> = ({ query, results, onSelect, o
     );
 };
 
-interface SearchResult {
-    id: number;
-    title: string;
-    url: string;
-    description: string;
-}
-
 interface AutocompleteProps {
     query: string;
     results: SearchResult[];
     onSelect: (selectedResult: SearchResult) => void;
-    onClear: () => void;
+    onClose: () => void;
 }
 
 export default Autocomplete;

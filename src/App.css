@@ -1,8 +1,6 @@
 .App {
-  text-align: center;
   font-family: Arial, sans-serif;
-  height: 100vh;
   display: flex;
   justify-content: center;
-  background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+
 }
