@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef, useContext } from 'react';
 import { motion } from 'framer-motion';
 import ClearIcon from '../icons/ClearIcon';
 import MicIcon from '../icons/MicIcon';
@@ -7,15 +7,31 @@ import SearchIcon from '../icons/SearchIcon';
 import KeyboardIcon from '../icons/KeyboardIcon';
 import Keyboard from 'react-simple-keyboard';
 import 'react-simple-keyboard/build/css/index.css';
-import './Search.css';
+import './SearchPage.css';
 import Autocomplete from '../../components/autocomplete/Autocomplete';
+import SearchResults from './searchResults/SearchResults';
+import { SearchResult } from '../../models/SearchResult';
+import { startSpeechRecognition, stopSpeechRecognition } from '../../utils/speechRecognitionUtils';
+import { SearchHistoryContext } from '../../context/SearchHistoryContext';
 
 const SearchPage: React.FC = () => {
+    const { searchHistory, addToSearchHistory, removeFromSearchHistory } = useContext(SearchHistoryContext);
+
     const [query, setQuery] = useState<string>('');
     const [isListening, setIsListening] = useState<boolean>(false);
     const [showKeyboard, setShowKeyboard] = useState<boolean>(false);
     const [recognition, setRecognition] = useState<SpeechRecognition | null>(null);
     const [results, setResults] = useState<SearchResult[]>([]);
+    const [filteredAutocompleteItems, setFilteredAutocompleteItems] = useState<SearchResult[]>([]);
+    const [searchResults, setSearchResults] = useState<SearchResult[]>([]); // Separate state for search results
+    const [showResults, setShowResults] = useState<boolean>(false);
+    const [showDropdown, setShowDropdown] = useState<boolean>(false);
+    const [searchTime, setSearchTime] = useState<number>(0);
+
+    const inputRef = useRef<HTMLInputElement>(null);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+    const keyboardRef = useRef<HTMLDivElement>(null);
+
 
     useEffect(() => {
         fetch('http://localhost:5000/items')
@@ -24,60 +40,99 @@ const SearchPage: React.FC = () => {
             .catch((error) => console.error('Error fetching data:', error));
     }, []);
 
+    useEffect(() => {
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, []);
+
+    // Add the event listener on mount
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                inputRef.current &&
+                dropdownRef.current &&
+                !inputRef.current.contains(event.target as Node) &&
+                !dropdownRef.current.contains(event.target as Node) &&
+                !keyboardRef.current?.contains(event.target as Node)
+
+            ) {
+                setShowDropdown(false);
+            }
+        };
+
+        document.addEventListener('click', handleClickOutside);
+        
+        // Cleanup event listener on unmount
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, []);
+
+    const stopListening = useCallback(() => {
+        stopSpeechRecognition(recognition, setIsListening, setRecognition);
+    }, [recognition]);
+
+    const startListening = useCallback(() => {
+        startSpeechRecognition(setIsListening, setQuery, stopListening, setRecognition);
+    }, [stopListening]);
+
     const handleClearInput = () => {
         setQuery('');
+        setShowDropdown(false);
     };
-
     const handleSelectResult = (selectedResult: SearchResult) => {
         setQuery(selectedResult.title);
-        window.open(selectedResult.url, '_blank');
-    };
-
-    const startListening = () => {
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-        if (SpeechRecognition) {
-            const newRecognition = new SpeechRecognition();
-            newRecognition.lang = 'en-US';
-            newRecognition.interimResults = false;
-            newRecognition.maxAlternatives = 1;
-
-            newRecognition.onstart = () => {
-                setIsListening(true);
-            };
-
-            newRecognition.onresult = (event: SpeechRecognitionEvent) => {
-                let speechResult = event.results[0][0].transcript;
-                speechResult = speechResult.replace(/[.,!?;:]$/, '');
-                setQuery(speechResult);
-            };
-
-            newRecognition.onspeechend = () => {
-                stopListening();
-            };
-
-            newRecognition.onerror = (event: SpeechRecognitionErrorEvent) => {
-                console.error('Speech recognition error detected: ' + event.error);
-                stopListening();
-            };
-
-            newRecognition.start();
-            setRecognition(newRecognition);
-        } else {
-            console.error('Speech recognition not supported in this browser.');
+    
+        // Only add to search history if the item exists in the database (i.e., id is not -1)
+        if (selectedResult.id !== -1) {
+            addToSearchHistory(selectedResult);
         }
+    
+        // Filter the results based on the selected item
+        const relatedResults = results.filter((item) =>
+            item.title.toLowerCase().includes(selectedResult.title.toLowerCase())
+        );
+    
+        setSearchResults(relatedResults); // Update search results only on selection
+        setShowResults(true); 
+        setShowDropdown(false);
     };
+    
+    
+    const handleSearch = () => {
+        const startTime = performance.now();
 
-    const stopListening = () => {
-        if (recognition) {
-            recognition.stop();
-            setRecognition(null);
+        const filteredResults = results.filter((item) =>
+            item.title.toLowerCase().includes(query.toLowerCase())
+        );
+
+        const endTime = performance.now();
+        const timeTaken = endTime - startTime;
+
+        setSearchResults(filteredResults); // Update search results only on search (Enter key)
+        setShowResults(true);
+        setShowDropdown(false);
+        setSearchTime(timeTaken);
+
+        const matchedResult = filteredResults.find((item) =>
+            item.title.toLowerCase() === query.toLowerCase()
+        );
+        if (matchedResult) {
+            addToSearchHistory(matchedResult);
         }
-        setIsListening(false);
     };
 
     const handleKeyboardInput = (input: string) => {
         setQuery((prev) => prev + input);
+        setShowDropdown(true);
+        setShowResults(false);
+    };
+
+    const handleAutocompleteChange = (query: string) => {
+        setFilteredAutocompleteItems(results.filter((item) =>
+            item.title.toLowerCase().startsWith(query.toLowerCase())
+        ));
     };
 
     return (
@@ -96,10 +151,13 @@ const SearchPage: React.FC = () => {
                 SearchX
             </motion.h1>
             {showKeyboard && (
-                <Keyboard onKeyPress={(button: string) => handleKeyboardInput(button)} />
+                <div ref={keyboardRef}>
+                    <Keyboard onKeyPress={(button: string) => handleKeyboardInput(button)} />
+                </div>
+               
             )}
             {isListening && (
-                <div style={{ marginTop: '10px', fontSize: '14px', color: '#666' }}>
+                <div style={{ marginTop: '10px', fontSize: '14px', color: '#666', textAlign: 'center', fontWeight: 'bold' }}>
                     Listening<span className="listening-dots"></span>
                 </div>
             )}
@@ -111,22 +169,32 @@ const SearchPage: React.FC = () => {
             >
                 <div className="input-container">
                     <SearchIcon />
-                    <motion.input
+                    <input
+                        ref={inputRef}
                         type="text"
                         value={query}
-                        onChange={(e) => setQuery(e.target.value)}
+                        onChange={(e) => {
+                            setQuery(e.target.value);
+                            handleAutocompleteChange(e.target.value);
+                            setShowDropdown(true);
+                        }}
                         className={`search-input ${query ? 'search-input-active' : ''}`}
                         placeholder="Search..."
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 2, delay: 0.6 }}
+                        onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+                        onFocus={() => setShowDropdown(true)} // Show dropdown on input focus
                     />
-                    <Autocomplete
-                        query={query}
-                        results={results}
-                        onSelect={handleSelectResult}
-                        onClear={handleClearInput}
-                    />
+                    {showDropdown && (
+                        <div ref={dropdownRef}>
+                            <Autocomplete
+                                onRemove={removeFromSearchHistory}
+                                searchHistory={searchHistory}
+                                query={query}
+                                results={filteredAutocompleteItems} // Pass filteredAutocompleteItems to Autocomplete
+                                onSelect={handleSelectResult}
+                                onClose={() => setShowDropdown(false)}
+                            />
+                        </div>
+                    )}
                 </div>
                 <div className="icons-container">
                     {query && <ClearIcon onClick={handleClearInput} />}
@@ -138,15 +206,14 @@ const SearchPage: React.FC = () => {
                     )}
                 </div>
             </motion.div>
+            {showResults && (
+                <div className="result-metadata">
+                    {searchResults.length} results found in {(searchTime / 1000).toFixed(2)} seconds
+                </div>
+            )}
+            {showResults && <SearchResults results={searchResults} searchHistory={searchHistory} />}
         </motion.div>
     );
 };
-
-interface SearchResult {
-    id: number;
-    title: string;
-    url: string;
-    description: string;
-}
 
 export default SearchPage;

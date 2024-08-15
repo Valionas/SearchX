@@ -416,7 +416,7 @@
         },
         {
             "id": 70,
-            "title": "Rust",
+            "title": "Rust Lang",
             "url": "https://www.rust-lang.org",
             "description": "A language empowering everyone to build reliable and efficient software"
         },
@@ -476,7 +476,7 @@
         },
         {
             "id": 80,
-            "title": "Rust",
+            "title": "Rust Programming",
             "url": "https://www.rust-lang.org",
             "description": "A language empowering everyone to build reliable and efficient software"
         },
@@ -740,13 +740,13 @@
         },
         {
             "id": 124,
-            "title": "RabbitMQ",
+            "title": "RabbitMQ 2",
             "url": "https://www.rabbitmq.com",
             "description": "An open-source message-broker software that originally implemented the Advanced Message Queuing Protocol (AMQP)"
         },
         {
             "id": 125,
-            "title": "Redis",
+            "title": "Redis 3",
             "url": "https://redis.io",
             "description": "An open-source, in-memory data structure store, used as a database, cache, and message broker"
         },
@@ -779,6 +779,246 @@
             "title": "Eclipse Mosquitto",
             "url": "https://mosquitto.org",
             "description": "An open-source message broker that implements the MQTT protocol, designed for lightweight messaging between devices"
+        },
+        {
+            "id": 131,
+            "title": "React Router",
+            "url": "https://reactrouter.com",
+            "description": "A collection of navigational components that compose declaratively with your application."
+        },
+        {
+            "id": 132,
+            "title": "Redux",
+            "url": "https://redux.js.org",
+            "description": "A Predictable State Container for JS Apps, commonly used with React."
+        },
+        {
+            "id": 133,
+            "title": "React Context API",
+            "url": "https://reactjs.org/docs/context.html",
+            "description": "A way to effectively produce global variables in React."
+        },
+        {
+            "id": 134,
+            "title": "React Hooks",
+            "url": "https://reactjs.org/docs/hooks-intro.html",
+            "description": "A special function that lets you 'hook into' React features."
+        },
+        {
+            "id": 135,
+            "title": "React Native",
+            "url": "https://reactnative.dev",
+            "description": "A framework for building native apps using React."
+        },
+        {
+            "id": 136,
+            "title": "Next.js",
+            "url": "https://nextjs.org",
+            "description": "A React framework for production, offering hybrid static & server rendering."
+        },
+        {
+            "id": 137,
+            "title": "Create React App",
+            "url": "https://create-react-app.dev",
+            "description": "A comfortable environment for learning React, and a convenient starting point for creating single-page applications."
+        },
+        {
+            "id": 138,
+            "title": "React Bootstrap",
+            "url": "https://react-bootstrap.github.io",
+            "description": "The most popular front-end framework rebuilt for React."
+        },
+        {
+            "id": 139,
+            "title": "Material-UI",
+            "url": "https://mui.com",
+            "description": "React components for faster and easier web development based on Google's Material Design."
+        },
+        {
+            "id": 140,
+            "title": "Gatsby",
+            "url": "https://www.gatsbyjs.com",
+            "description": "A React-based open-source framework for creating websites and apps."
+        },
+        {
+            "id": 141,
+            "title": "Formik",
+            "url": "https://formik.org",
+            "description": "A small group of React components and hooks for building forms in React."
+        },
+        {
+            "id": 142,
+            "title": "React Testing Library",
+            "url": "https://testing-library.com/docs/react-testing-library/intro",
+            "description": "A library for testing React components."
+        },
+        {
+            "id": 143,
+            "title": "React Spring",
+            "url": "https://react-spring.dev",
+            "description": "A spring-physics based animation library that should cover most of your UI related animation needs."
+        },
+        {
+            "id": 144,
+            "title": "React Query",
+            "url": "https://react-query.tanstack.com",
+            "description": "Hooks for fetching, caching, and updating asynchronous data in React."
+        },
+        {
+            "id": 145,
+            "title": "React Helmet",
+            "url": "https://github.com/nfl/react-helmet",
+            "description": "A document head manager for React."
+        },
+        {
+            "id": 146,
+            "title": "React DnD",
+            "url": "https://react-dnd.github.io/react-dnd/about",
+            "description": "A set of React utilities to help you build complex drag and drop interfaces while keeping your components decoupled."
+        },
+        {
+            "id": 147,
+            "title": "React Intl",
+            "url": "https://formatjs.io/docs/react-intl",
+            "description": "Internationalization library for React, providing translations and formatting."
+        },
+        {
+            "id": 148,
+            "title": "Styled Components",
+            "url": "https://styled-components.com",
+            "description": "Utilize tagged template literals to style your components."
+        },
+        {
+            "id": 149,
+            "title": "React Hook Form",
+            "url": "https://react-hook-form.com",
+            "description": "Performant, flexible, and extensible forms with easy-to-use validation."
+        },
+        {
+            "id": 150,
+            "title": "React i18next",
+            "url": "https://react.i18next.com",
+            "description": "Internationalization framework for React."
+        },
+        {
+            "id": 151,
+            "title": "Chakra UI",
+            "url": "https://chakra-ui.com",
+            "description": "A simple, modular and accessible component library that gives you the building blocks you need to build your React applications."
+        },
+        {
+            "id": 152,
+            "title": "React Admin",
+            "url": "https://marmelab.com/react-admin",
+            "description": "A frontend framework for building admin panels on top of REST/GraphQL APIs, using React and Material Design."
+        },
+        {
+            "id": 153,
+            "title": "Framer Motion",
+            "url": "https://www.framer.com/motion",
+            "description": "A production-ready motion library for React."
+        },
+        {
+            "id": 154,
+            "title": "Recoil",
+            "url": "https://recoiljs.org",
+            "description": "A state management library for React that provides a simple way to share the state across multiple components."
+        },
+        {
+            "id": 155,
+            "title": "React Leaflet",
+            "url": "https://react-leaflet.js.org",
+            "description": "React components for Leaflet maps."
+        },
+        {
+            "id": 156,
+            "title": "React Virtualized",
+            "url": "https://github.com/bvaughn/react-virtualized",
+            "description": "React components for efficiently rendering large lists and tabular data."
+        },
+        {
+            "id": 157,
+            "title": "React Table",
+            "url": "https://react-table.tanstack.com",
+            "description": "A lightweight, fast, and extendable datagrid built for React."
+        },
+        {
+            "id": 158,
+            "title": "Storybook",
+            "url": "https://storybook.js.org",
+            "description": "UI component explorer for frontend developers."
+        },
+        {
+            "id": 159,
+            "title": "React Slick",
+            "url": "https://react-slick.neostack.com",
+            "description": "A carousel component built with React."
+        },
+        {
+            "id": 160,
+            "title": "React Dropzone",
+            "url": "https://react-dropzone.js.org",
+            "description": "Simple React hooks for creating a dropzone."
+        },
+        {
+            "id": 161,
+            "title": "React Datepicker",
+            "url": "https://reactdatepicker.com",
+            "description": "A simple and reusable datepicker component for React."
+        },
+        {
+            "id": 162,
+            "title": "React Bootstrap Table",
+            "url": "https://react-bootstrap-table.github.io/react-bootstrap-table2",
+            "description": "A library for rendering tabular data in React."
+        },
+        {
+            "id": 163,
+            "title": "React Native Paper",
+            "url": "https://reactnativepaper.com",
+            "description": "A high-quality, standard-compliant Material Design library for React Native."
+        },
+        {
+            "id": 164,
+            "title": "React Transition Group",
+            "url": "https://reactcommunity.org/react-transition-group",
+            "description": "A set of React components for implementing animations."
+        },
+        {
+            "id": 165,
+            "title": "Recharts",
+            "url": "https://recharts.org",
+            "description": "A composable charting library built on React components."
+        },
+        {
+            "id": 166,
+            "title": "React Beautiful DnD",
+            "url": "https://github.com/atlassian/react-beautiful-dnd",
+            "description": "Beautiful and accessible drag and drop for lists with React."
+        },
+        {
+            "id": 167,
+            "title": "React ARIA",
+            "url": "https://react-spectrum.adobe.com/react-aria",
+            "description": "A library of React hooks that provides accessible UI primitives."
+        },
+        {
+            "id": 168,
+            "title": "React FontAwesome",
+            "url": "https://fontawesome.com/how-to-use/on-the-web/using-with/react",
+            "description": "Use FontAwesome icons as React components."
+        },
+        {
+            "id": 169,
+            "title": "React Icons",
+            "url": "https://react-icons.github.io/react-icons",
+            "description": "Include popular icons in your React projects easily with React Icons."
+        },
+        {
+            "id": 170,
+            "title": "React Select",
+            "url": "https://react-select.com",
+            "description": "A flexible and beautiful Select Input control for ReactJS with multiselect, autocomplete, async and creatable support."
         }
     ]
 }

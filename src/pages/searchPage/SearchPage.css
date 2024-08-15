@@ -1,7 +1,6 @@
 .search-container {
     width: 800px;
-    margin: 100px auto;
-    text-align: center;
+  
 }
 
 .search-title {
@@ -9,6 +8,7 @@
     margin-bottom: 20px;
     color: #333;
     font-weight: bold;
+    text-align: center;
 }
 
 .search-box {
@@ -103,4 +103,11 @@
     80%, 100% {
         content: '...';
     }
+}
+
+.result-metadata {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+    font-weight: bold;
 }
