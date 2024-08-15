@@ -101,13 +101,13 @@ const SearchPage: React.FC = () => {
     
     
     const handleSearch = () => {
-        const startTime = performance.now();
+        const startTime = window.performance.now();
 
         const filteredResults = results.filter((item) =>
             item.title.toLowerCase().includes(query.toLowerCase())
         );
 
-        const endTime = performance.now();
+        const endTime = window.performance.now();
         const timeTaken = endTime - startTime;
 
         setSearchResults(filteredResults); // Update search results only on search (Enter key)
@@ -126,7 +126,6 @@ const SearchPage: React.FC = () => {
     const handleKeyboardInput = (input: string) => {
         setQuery((prev) => prev + input);
         setShowDropdown(true);
-        setShowResults(false);
     };
 
     const handleAutocompleteChange = (query: string) => {
