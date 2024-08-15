@@ -23,9 +23,9 @@ const SearchPage: React.FC = () => {
     const [recognition, setRecognition] = useState<SpeechRecognition | null>(null);
     const [results, setResults] = useState<SearchResult[]>([]);
     const [filteredAutocompleteItems, setFilteredAutocompleteItems] = useState<SearchResult[]>([]);
-    const [searchResults, setSearchResults] = useState<SearchResult[]>([]); // Separate state for search results
+    const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
     const [showResults, setShowResults] = useState<boolean>(false);
-    const [showDropdown, setShowDropdown] = useState<boolean>(true);
+    const [showDropdown, setShowDropdown] = useState<boolean>(false);  // Initially false
     const [searchTime, setSearchTime] = useState<number>(0);
 
     const inputRef = useRef<HTMLInputElement>(null);
@@ -64,7 +64,7 @@ const SearchPage: React.FC = () => {
             item.title.toLowerCase().includes(selectedResult.title.toLowerCase())
         );
     
-        setSearchResults(relatedResults); // Update search results only on selection
+        setSearchResults(relatedResults);
         setShowResults(true); 
         setShowDropdown(false);
     };
@@ -79,7 +79,7 @@ const SearchPage: React.FC = () => {
         const endTime = performance.now();
         const timeTaken = endTime - startTime;
 
-        setSearchResults(filteredResults); // Update search results only on search (Enter key)
+        setSearchResults(filteredResults);
         setShowResults(true);
         setShowDropdown(false);
         setSearchTime(timeTaken);
@@ -102,6 +102,13 @@ const SearchPage: React.FC = () => {
         setFilteredAutocompleteItems(results.filter((item) =>
             item.title.toLowerCase().startsWith(query.toLowerCase())
         ));
+    };
+
+    const handleInputFocus = () => {
+        if (query) {
+            handleAutocompleteChange(query);
+            setShowDropdown(true);
+        }
     };
 
     return (
@@ -147,13 +154,14 @@ const SearchPage: React.FC = () => {
                         className={`search-input ${query ? 'search-input-active' : ''}`}
                         placeholder="Search..."
                         onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
+                        onFocus={handleInputFocus}  // Show dropdown on input focus if query exists
                     />
                     {showDropdown && (
                         <Autocomplete
                             onRemove={removeFromSearchHistory}
                             searchHistory={searchHistory}
                             query={query}
-                            results={filteredAutocompleteItems} // Pass filteredAutocompleteItems to Autocomplete
+                            results={filteredAutocompleteItems}
                             onSelect={handleSelectResult}
                             onClose={() => setShowDropdown(false)}
                         />

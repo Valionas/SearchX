@@ -15,14 +15,12 @@ const Autocomplete: React.FC<AutocompleteProps> = ({ query, results, onSelect, o
 
     useEffect(() => {
         if (query) {
-            // Filter out results that are already in the search history
             const filtered = results
                 .filter((result) =>
                     result.title.toLowerCase().startsWith(query.toLowerCase()) &&
                     !searchHistory.some(item => item.id === result.id)
                 );
 
-            // Combine search history at the top with new filtered results
             const combinedResults = [
                 ...searchHistory.filter((item) =>
                     item.title.toLowerCase().startsWith(query.toLowerCase())
@@ -38,7 +36,7 @@ const Autocomplete: React.FC<AutocompleteProps> = ({ query, results, onSelect, o
 
     return (
         <div className="autocomplete-container">
-            {filteredResults.length > 0 && (
+            {filteredResults.length > 0 ? (
                 <div className="autocomplete-dropdown">
                     {filteredResults.map((result) => (
                         <div
@@ -63,6 +61,21 @@ const Autocomplete: React.FC<AutocompleteProps> = ({ query, results, onSelect, o
                             )}
                         </div>
                     ))}
+                </div>
+            ) : (
+                <div className="autocomplete-dropdown">
+                    <div
+                        className="autocomplete-item"
+                        onClick={() => {
+                            onSelect({ id: -1, title: query, url: '', description: '' });
+                            onClose();
+                        }}
+                    >
+                        <div className='icon-label-search'>
+                            <SearchIcon />
+                            {`Search for "${query}"`}
+                        </div>
+                    </div>
                 </div>
             )}
         </div>
