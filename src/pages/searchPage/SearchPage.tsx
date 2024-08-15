@@ -57,15 +57,22 @@ const SearchPage: React.FC = () => {
     };
 
     const handleSelectResult = (selectedResult: SearchResult) => {
-        setQuery(selectedResult.title);
-        addToSearchHistory(selectedResult); 
+        if (selectedResult.id !== -1) {
+            setQuery(selectedResult.title);
+            addToSearchHistory(selectedResult); 
     
-        const relatedResults = results.filter((item) =>
-            item.title.toLowerCase().includes(selectedResult.title.toLowerCase())
-        );
+            // Filter the results based on the selected item
+            const relatedResults = results.filter((item) =>
+                item.title.toLowerCase().includes(selectedResult.title.toLowerCase())
+            );
     
-        setSearchResults(relatedResults);
-        setShowResults(true); 
+            setSearchResults(relatedResults); // Update search results only on selection
+            setShowResults(true); 
+        } else {
+            setSearchResults([]);
+            setShowResults(false); 
+            console.log("No valid results found for the query.");
+        }
         setShowDropdown(false);
     };
     
