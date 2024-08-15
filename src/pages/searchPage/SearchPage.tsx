@@ -30,7 +30,8 @@ const SearchPage: React.FC = () => {
 
     const inputRef = useRef<HTMLInputElement>(null);
     const dropdownRef = useRef<HTMLDivElement>(null);
-    const keyboardRef = useRef<HTMLDivElement>(null); // Ref for the keyboard
+    const keyboardRef = useRef<HTMLDivElement>(null);
+
 
     useEffect(() => {
         fetch('http://localhost:5000/items')
@@ -51,10 +52,10 @@ const SearchPage: React.FC = () => {
             if (
                 inputRef.current &&
                 dropdownRef.current &&
-                keyboardRef.current &&
                 !inputRef.current.contains(event.target as Node) &&
                 !dropdownRef.current.contains(event.target as Node) &&
-                !keyboardRef.current.contains(event.target as Node) // Include keyboard in the click check
+                !keyboardRef.current?.contains(event.target as Node)
+
             ) {
                 setShowDropdown(false);
             }
@@ -80,7 +81,6 @@ const SearchPage: React.FC = () => {
         setQuery('');
         setShowDropdown(false);
     };
-    
     const handleSelectResult = (selectedResult: SearchResult) => {
         setQuery(selectedResult.title);
     
@@ -94,10 +94,11 @@ const SearchPage: React.FC = () => {
             item.title.toLowerCase().includes(selectedResult.title.toLowerCase())
         );
     
-        setSearchResults(relatedResults);
+        setSearchResults(relatedResults); // Update search results only on selection
         setShowResults(true); 
         setShowDropdown(false);
     };
+    
     
     const handleSearch = () => {
         const startTime = performance.now();
@@ -153,6 +154,7 @@ const SearchPage: React.FC = () => {
                 <div ref={keyboardRef}>
                     <Keyboard onKeyPress={(button: string) => handleKeyboardInput(button)} />
                 </div>
+               
             )}
             {isListening && (
                 <div style={{ marginTop: '10px', fontSize: '14px', color: '#666', textAlign: 'center', fontWeight: 'bold' }}>
