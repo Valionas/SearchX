@@ -58,10 +58,18 @@ const SearchPage: React.FC = () => {
 
     const handleSelectResult = (selectedResult: SearchResult) => {
         setQuery(selectedResult.title);
-        addToSearchHistory(selectedResult); // Add to search history
-        setShowResults(true);
+        addToSearchHistory(selectedResult); 
+    
+        // Filter the results based on the selected item
+        const relatedResults = results.filter((item) =>
+            item.title.toLowerCase().includes(selectedResult.title.toLowerCase())
+        );
+    
+        setFilteredList(relatedResults); 
+        setShowResults(true); 
         setShowDropdown(false);
     };
+    
 
     const handleSearch = () => {
         const startTime = performance.now();
@@ -90,6 +98,7 @@ const SearchPage: React.FC = () => {
     const handleKeyboardInput = (input: string) => {
         setQuery((prev) => prev + input);
         setShowDropdown(true);
+        setShowResults(false);
     };
 
     return (
