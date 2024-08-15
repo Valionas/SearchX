@@ -39,7 +39,8 @@
 }
 
 .autocomplete-item-searched {
-    color: blue;
+    color: purple;
+    font-weight: bold;
 }
 
 .autocomplete-item svg {
