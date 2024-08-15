@@ -1,64 +1,70 @@
 import React, { useState, useEffect } from 'react';
 import './Autocomplete.css';
 import SearchIcon from '../../pages/icons/SearchIcon';
+import ClockIcon from '../../pages/icons/ClockIcon';
 import { SearchResult } from '../../models/SearchResult';
 
-const Autocomplete: React.FC<AutocompleteProps> = ({ query, results, onSelect, onClose }) => {
+const Autocomplete: React.FC<AutocompleteProps> = ({ query, results, onSelect, onClose, searchHistory, onRemove }) => {
     const [filteredResults, setFilteredResults] = useState<SearchResult[]>([]);
+
+    const handleRemove = (event: React.MouseEvent, id: number) => {
+        event.preventDefault();
+        event.stopPropagation();
+        onRemove(id);
+    };
 
     useEffect(() => {
         if (query) {
+            // Filter out results that are already in the search history
             const filtered = results
                 .filter((result) =>
-                    result.title.toLowerCase().includes(query.toLowerCase())
-                )
-                .slice(0, 10);
-            setFilteredResults(filtered);
+                    result.title.toLowerCase().startsWith(query.toLowerCase()) &&
+                    !searchHistory.some(item => item.id === result.id)
+                );
+
+            // Combine search history at the top with new filtered results
+            const combinedResults = [
+                ...searchHistory.filter((item) =>
+                    item.title.toLowerCase().startsWith(query.toLowerCase())
+                ),
+                ...filtered,
+            ];
+
+            setFilteredResults(combinedResults);
         } else {
             setFilteredResults([]);
         }
-    }, [query, results]);
-
-    const handleSelect = (result: SearchResult) => {
-        onSelect(result);
-        onClose(); 
-    };
-
-    const handleKeyDown = (e: React.KeyboardEvent) => {
-        if (e.key === 'Enter') {
-            if (filteredResults.length > 0) {
-                handleSelect(filteredResults[0]); // Select the first item on Enter key press
-            } else {
-                handleSelect({ id: 0, title: query, url: '', description: '' }); // Handle the "Search for" scenario
-            }
-        }
-    };
+    }, [query, results, searchHistory]);
 
     return (
-        <div className="autocomplete-container" onKeyDown={handleKeyDown}>
-            {filteredResults.length > 0 ? (
+        <div className="autocomplete-container">
+            {filteredResults.length > 0 && (
                 <div className="autocomplete-dropdown">
                     {filteredResults.map((result) => (
                         <div
                             key={result.id}
-                            className="autocomplete-item"
-                            onClick={() => handleSelect(result)}
+                            className={`autocomplete-item ${searchHistory.some(item => item.id === result.id) ? 'autocomplete-item-searched' : ''}`}
+                            onClick={() => {
+                                onSelect(result);
+                                onClose();
+                            }}
                         >
-                            <SearchIcon />
-                            {result.title}
+                            <div className='icon-label-search'>
+                                {searchHistory.some(item => item.id === result.id) ? <ClockIcon /> : <SearchIcon />}
+                                {result.title}
+                            </div>
+                            {searchHistory.some(item => item.id === result.id) && (
+                                <span
+                                    className="remove-label"
+                                    onClick={(event) => handleRemove(event, result.id)}
+                                >
+                                    Remove
+                                </span>
+                            )}
                         </div>
                     ))}
                 </div>
-            ) : query ? (
-                <div className="autocomplete-dropdown">
-                    <div
-                        className="autocomplete-item search-for-item"
-                        onClick={() => handleSelect({ id: 0, title: query, url: '', description: '' })}
-                    >                  
-                        Search for "{query}"
-                    </div>
-                </div>
-            ) : null}
+            )}
         </div>
     );
 };
@@ -68,6 +74,8 @@ interface AutocompleteProps {
     results: SearchResult[];
     onSelect: (selectedResult: SearchResult) => void;
     onClose: () => void;
+    searchHistory: SearchResult[]; 
+    onRemove: (id: number) => void; 
 }
 
 export default Autocomplete;
