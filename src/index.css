@@ -1,3 +1,10 @@
 body {
-    background: linear-gradient(160deg, #b3e5fc, #eceff1);
+    background: linear-gradient(
+        90deg,
+        #b3e5fc 0%,  /* Light Blue */
+        #b9e7fd 25%, /* Slightly darker blue */
+        #c4e9fd 50%, /* Even more darker */
+        #d0ebf8 75%, /* Near light gray blue */
+        #eceff1 100% /* Very Light Gray Blue */
+    );
 }
