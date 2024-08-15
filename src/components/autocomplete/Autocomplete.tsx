@@ -62,7 +62,7 @@ const Autocomplete: React.FC<AutocompleteProps> = ({ query, results, onSelect, o
                         </div>
                     ))}
                 </div>
-            ) : (
+            ) : query ? (  // Only show "Search for" if the query is not empty
                 <div className="autocomplete-dropdown">
                     <div
                         className="autocomplete-item"
@@ -77,7 +77,7 @@ const Autocomplete: React.FC<AutocompleteProps> = ({ query, results, onSelect, o
                         </div>
                     </div>
                 </div>
-            )}
+            ) : null} {/* Don't show anything if the query is empty */}
         </div>
     );
 };

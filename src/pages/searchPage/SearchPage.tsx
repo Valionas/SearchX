@@ -23,12 +23,14 @@ const SearchPage: React.FC = () => {
     const [recognition, setRecognition] = useState<SpeechRecognition | null>(null);
     const [results, setResults] = useState<SearchResult[]>([]);
     const [filteredAutocompleteItems, setFilteredAutocompleteItems] = useState<SearchResult[]>([]);
-    const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+    const [searchResults, setSearchResults] = useState<SearchResult[]>([]); // Separate state for search results
     const [showResults, setShowResults] = useState<boolean>(false);
-    const [showDropdown, setShowDropdown] = useState<boolean>(false);  // Initially false
+    const [showDropdown, setShowDropdown] = useState<boolean>(false);
     const [searchTime, setSearchTime] = useState<number>(0);
 
     const inputRef = useRef<HTMLInputElement>(null);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+    const keyboardRef = useRef<HTMLDivElement>(null); // Ref for the keyboard
 
     useEffect(() => {
         fetch('http://localhost:5000/items')
@@ -43,6 +45,29 @@ const SearchPage: React.FC = () => {
         }
     }, []);
 
+    // Add the event listener on mount
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                inputRef.current &&
+                dropdownRef.current &&
+                keyboardRef.current &&
+                !inputRef.current.contains(event.target as Node) &&
+                !dropdownRef.current.contains(event.target as Node) &&
+                !keyboardRef.current.contains(event.target as Node) // Include keyboard in the click check
+            ) {
+                setShowDropdown(false);
+            }
+        };
+
+        document.addEventListener('click', handleClickOutside);
+        
+        // Cleanup event listener on unmount
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, []);
+
     const stopListening = useCallback(() => {
         stopSpeechRecognition(recognition, setIsListening, setRecognition);
     }, [recognition]);
@@ -55,24 +80,22 @@ const SearchPage: React.FC = () => {
         setQuery('');
         setShowDropdown(false);
     };
-
+    
     const handleSelectResult = (selectedResult: SearchResult) => {
+        setQuery(selectedResult.title);
+    
+        // Only add to search history if the item exists in the database (i.e., id is not -1)
         if (selectedResult.id !== -1) {
-            setQuery(selectedResult.title);
-            addToSearchHistory(selectedResult); 
-    
-            // Filter the results based on the selected item
-            const relatedResults = results.filter((item) =>
-                item.title.toLowerCase().includes(selectedResult.title.toLowerCase())
-            );
-    
-            setSearchResults(relatedResults); // Update search results only on selection
-            setShowResults(true); 
-        } else {
-            setSearchResults([]);
-            setShowResults(false); 
-            console.log("No valid results found for the query.");
+            addToSearchHistory(selectedResult);
         }
+    
+        // Filter the results based on the selected item
+        const relatedResults = results.filter((item) =>
+            item.title.toLowerCase().includes(selectedResult.title.toLowerCase())
+        );
+    
+        setSearchResults(relatedResults);
+        setShowResults(true); 
         setShowDropdown(false);
     };
     
@@ -86,7 +109,7 @@ const SearchPage: React.FC = () => {
         const endTime = performance.now();
         const timeTaken = endTime - startTime;
 
-        setSearchResults(filteredResults);
+        setSearchResults(filteredResults); // Update search results only on search (Enter key)
         setShowResults(true);
         setShowDropdown(false);
         setSearchTime(timeTaken);
@@ -111,13 +134,6 @@ const SearchPage: React.FC = () => {
         ));
     };
 
-    const handleInputFocus = () => {
-        if (query) {
-            handleAutocompleteChange(query);
-            setShowDropdown(true);
-        }
-    };
-
     return (
         <motion.div
             className="search-container"
@@ -134,7 +150,9 @@ const SearchPage: React.FC = () => {
                 SearchX
             </motion.h1>
             {showKeyboard && (
-                <Keyboard onKeyPress={(button: string) => handleKeyboardInput(button)} />
+                <div ref={keyboardRef}>
+                    <Keyboard onKeyPress={(button: string) => handleKeyboardInput(button)} />
+                </div>
             )}
             {isListening && (
                 <div style={{ marginTop: '10px', fontSize: '14px', color: '#666', textAlign: 'center', fontWeight: 'bold' }}>
@@ -161,17 +179,19 @@ const SearchPage: React.FC = () => {
                         className={`search-input ${query ? 'search-input-active' : ''}`}
                         placeholder="Search..."
                         onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-                        onFocus={handleInputFocus}  // Show dropdown on input focus if query exists
+                        onFocus={() => setShowDropdown(true)} // Show dropdown on input focus
                     />
                     {showDropdown && (
-                        <Autocomplete
-                            onRemove={removeFromSearchHistory}
-                            searchHistory={searchHistory}
-                            query={query}
-                            results={filteredAutocompleteItems}
-                            onSelect={handleSelectResult}
-                            onClose={() => setShowDropdown(false)}
-                        />
+                        <div ref={dropdownRef}>
+                            <Autocomplete
+                                onRemove={removeFromSearchHistory}
+                                searchHistory={searchHistory}
+                                query={query}
+                                results={filteredAutocompleteItems} // Pass filteredAutocompleteItems to Autocomplete
+                                onSelect={handleSelectResult}
+                                onClose={() => setShowDropdown(false)}
+                            />
+                        </div>
                     )}
                 </div>
                 <div className="icons-container">
