@@ -416,7 +416,7 @@
         },
         {
             "id": 70,
-            "title": "Rust",
+            "title": "Rust Lang",
             "url": "https://www.rust-lang.org",
             "description": "A language empowering everyone to build reliable and efficient software"
         },
@@ -476,7 +476,7 @@
         },
         {
             "id": 80,
-            "title": "Rust",
+            "title": "Rust Programming",
             "url": "https://www.rust-lang.org",
             "description": "A language empowering everyone to build reliable and efficient software"
         },
@@ -740,13 +740,13 @@
         },
         {
             "id": 124,
-            "title": "RabbitMQ",
+            "title": "RabbitMQ 2",
             "url": "https://www.rabbitmq.com",
             "description": "An open-source message-broker software that originally implemented the Advanced Message Queuing Protocol (AMQP)"
         },
         {
             "id": 125,
-            "title": "Redis",
+            "title": "Redis 3",
             "url": "https://redis.io",
             "description": "An open-source, in-memory data structure store, used as a database, cache, and message broker"
         },
