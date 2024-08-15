@@ -22,7 +22,8 @@ const SearchPage: React.FC = () => {
     const [showKeyboard, setShowKeyboard] = useState<boolean>(false);
     const [recognition, setRecognition] = useState<SpeechRecognition | null>(null);
     const [results, setResults] = useState<SearchResult[]>([]);
-    const [filteredList, setFilteredList] = useState<SearchResult[]>([]);
+    const [filteredAutocompleteItems, setFilteredAutocompleteItems] = useState<SearchResult[]>([]);
+    const [searchResults, setSearchResults] = useState<SearchResult[]>([]); // Separate state for search results
     const [showResults, setShowResults] = useState<boolean>(false);
     const [showDropdown, setShowDropdown] = useState<boolean>(true);
     const [searchTime, setSearchTime] = useState<number>(0);
@@ -52,7 +53,6 @@ const SearchPage: React.FC = () => {
 
     const handleClearInput = () => {
         setQuery('');
-        setShowResults(false);
         setShowDropdown(false);
     };
 
@@ -60,17 +60,15 @@ const SearchPage: React.FC = () => {
         setQuery(selectedResult.title);
         addToSearchHistory(selectedResult); 
     
-        // Filter the results based on the selected item
         const relatedResults = results.filter((item) =>
             item.title.toLowerCase().includes(selectedResult.title.toLowerCase())
         );
     
-        setFilteredList(relatedResults); 
+        setSearchResults(relatedResults); // Update search results only on selection
         setShowResults(true); 
         setShowDropdown(false);
     };
     
-
     const handleSearch = () => {
         const startTime = performance.now();
 
@@ -81,12 +79,11 @@ const SearchPage: React.FC = () => {
         const endTime = performance.now();
         const timeTaken = endTime - startTime;
 
-        setFilteredList(filteredResults);
+        setSearchResults(filteredResults); // Update search results only on search (Enter key)
         setShowResults(true);
         setShowDropdown(false);
         setSearchTime(timeTaken);
 
-        // Add the query to search history if there's an exact match
         const matchedResult = filteredResults.find((item) =>
             item.title.toLowerCase() === query.toLowerCase()
         );
@@ -99,6 +96,12 @@ const SearchPage: React.FC = () => {
         setQuery((prev) => prev + input);
         setShowDropdown(true);
         setShowResults(false);
+    };
+
+    const handleAutocompleteChange = (query: string) => {
+        setFilteredAutocompleteItems(results.filter((item) =>
+            item.title.toLowerCase().startsWith(query.toLowerCase())
+        ));
     };
 
     return (
@@ -138,8 +141,8 @@ const SearchPage: React.FC = () => {
                         value={query}
                         onChange={(e) => {
                             setQuery(e.target.value);
+                            handleAutocompleteChange(e.target.value);
                             setShowDropdown(true);
-                            setShowResults(false);
                         }}
                         className={`search-input ${query ? 'search-input-active' : ''}`}
                         placeholder="Search..."
@@ -150,7 +153,7 @@ const SearchPage: React.FC = () => {
                             onRemove={removeFromSearchHistory}
                             searchHistory={searchHistory}
                             query={query}
-                            results={results}
+                            results={filteredAutocompleteItems} // Pass filteredAutocompleteItems to Autocomplete
                             onSelect={handleSelectResult}
                             onClose={() => setShowDropdown(false)}
                         />
@@ -168,10 +171,10 @@ const SearchPage: React.FC = () => {
             </motion.div>
             {showResults && (
                 <div className="result-metadata">
-                    {filteredList.length} results found in {(searchTime / 1000).toFixed(2)} seconds
+                    {searchResults.length} results found in {(searchTime / 1000).toFixed(2)} seconds
                 </div>
             )}
-            {showResults && <SearchResults results={filteredList} searchHistory={searchHistory} />}
+            {showResults && <SearchResults results={searchResults} searchHistory={searchHistory} />}
         </motion.div>
     );
 };
