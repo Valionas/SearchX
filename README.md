@@ -1,6 +1,7 @@
 # SearchX
 
 SearchX is a modern, interactive search interface built using **React**, **TypeScript**, and **Framer Motion**. It features real-time autocomplete suggestions, speech recognition, and a virtual keyboard, offering a dynamic and user-friendly search experience.
+![image](https://github.com/user-attachments/assets/30033cde-8949-406e-b5d7-bf0d9e1f499b)
 
 ## Features
 
